@@ -1,5 +1,7 @@
 import random
 
+from langchain_utils import extract_symptoms_from_text
+
 class Resource:
     def __init__(self, name: str, capacity: int):
         self.name = name
@@ -17,13 +19,14 @@ class Resource:
             self.locked_by.remove(agent_id)
 
 class Patient:
-    def __init__(self, patient_id: int):
+    def __init__(self, patient_id, raw_description=None):
         self.patient_id = patient_id
-        self.symptoms = random.sample(
-            [
-                "fever", "cough", "fatigue", "headache", "chest pain",
-                "numbness", "blurred vision", "slurred speech", "dizziness"
-            ],
-            3
-        )
-        self.true_condition = random.choice(["flu", "stroke", "heart_attack", "migraine"])
+        if raw_description:
+            self.symptoms = extract_symptoms_from_text(raw_description)
+        else:
+            self.symptoms = self.random_symptoms()
+        self.true_condition = self.derive_condition_from_symptoms()
+
+
+p = Patient(1, "I feel light-headed, short of breath, and confused.")
+print(p.symptoms)  # => ['dizziness', 'shortness of breath', 'confusion']

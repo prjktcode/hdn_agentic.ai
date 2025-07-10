@@ -2,6 +2,10 @@ import random
 from typing import Dict, List, Optional
 from collections import defaultdict
 
+#from langchain.prompts import PromptTemplate
+#from langchain.chains import LLMChain
+#from langchain.chat_models import ChatOpenAI
+
 class RLAgent:
     def __init__(self, agent_id: str, specialty: str, success_metric: str, actions: List[str]):
         self.agent_id = agent_id
@@ -9,9 +13,9 @@ class RLAgent:
         self.success_metric = success_metric
         self.actions = actions
         self.q_table = defaultdict(lambda: {a: 0.0 for a in actions})
-        self.epsilon = 0.2  # Exploration rate
-        self.alpha = 0.5    # Learning rate
-        self.gamma = 0.9    # Discount factor
+        self.epsilon = 0.2  ## exploration rate
+        self.alpha = 0.5    ## learning rate
+        self.gamma = 0.9    ## discount factor
         self.known_cases: Dict[int, Dict] = {}
         self.alive = True
         self.history = []
@@ -34,7 +38,7 @@ class RLAgent:
             return None
         state = self.known_cases[patient_id]["state"]
 
-        # Better heuristic: infer based on symptom clues
+        ## improved heuristic: infer based on symptom clues
         symptoms = set(state)
         if {"chest pain", "fatigue"}.intersection(symptoms):
             guess = "heart_attack"

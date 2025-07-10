@@ -18,7 +18,7 @@ def simulation_step(agents, patient, resource):
     for agent in agents:
         if agent.alive:
             agent.perceive(patient)
-            register_agent(agent)  # ?? Always track this agent
+            register_agent(agent)  ## to keep tracking this agent
 
     for agent in agents:
         if not agent.alive:
@@ -31,13 +31,13 @@ def simulation_step(agents, patient, resource):
             agent.update_reward(patient.patient_id)
             agent.release_resource(resource)
 
-            # ?? Track result
+            ## tracking result
             correct = (diagnosis == patient.true_condition)
             accuracy_tracker[agent.agent_id].append(int(correct))
             diagnosis_counts[agent.agent_id] += 1
         else:
             print(f"[{agent.agent_id}] Could not access {resource.name}, skipping.")
-            # ? Count skipped attempts too (optional): add 0 or skip
+            ## Count number of skipped attempts too: add 0 or skip
 
 def simulate():
     actions = ["flu", "stroke", "heart_attack", "migraine"]

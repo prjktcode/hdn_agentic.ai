@@ -23,8 +23,12 @@
   <ItemGroup>
     <Compile Include="agents.py" />
     <Compile Include="environment.py" />
+    <Compile Include="langchain_utils.py" />
     <Compile Include="run.py" />
     <Compile Include="simulation.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
