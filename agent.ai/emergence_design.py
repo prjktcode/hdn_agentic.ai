@@ -1,7 +1,7 @@
 import time
 import random
-from agents import RLAgent
-from environment import Patient, Resource
+from agent_interaction_model import RLAgent
+from conflict_resolution import Patient, Resource
 import matplotlib.pyplot as plt
 
 accuracy_tracker = {}
