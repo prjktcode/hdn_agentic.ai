@@ -1,4 +1,4 @@
-# agent.ai ---  README.md
+# hdi_agent.ai ---  README.md
 
 **System Overview: Healthcare Diagnosis Network**
 
